@@ -1,4 +1,4 @@
-FROM anuphal/thrift-microservice-deps:latest AS builder
+FROM hyunjinis/thrift-microservice-deps:arm64 AS builder
 
 ARG LIB_REDIS_PLUS_PLUS_VERSION=1.2.3
 

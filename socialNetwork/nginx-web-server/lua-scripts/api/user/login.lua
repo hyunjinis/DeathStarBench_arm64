@@ -17,10 +17,18 @@ function _M.Login()
 
   local req_id = tonumber(string.sub(ngx.var.request_id, 0, 15), 16)
   local tracer = bridge_tracer.new_from_global()
-  local parent_span_context = tracer:binary_extract(
-      ngx.var.opentracing_binary_context)
-  local span = tracer:start_span("Login",
-      {["references"] = {{"child_of", parent_span_context}}})
+  local parent_span_context = nil
+  if ngx.var.opentracing_binary_context ~= nil then
+    parent_span_context = tracer:binary_extract(ngx.var.opentracing_binary_context)
+  end
+
+  local span
+  if parent_span_context ~= nil then
+    span = tracer:start_span("Login", {["references"] = {{"child_of", parent_span_context}}})
+  else
+        span = tracer:start_span("Login")
+  end
+  
   local carrier = {}
   tracer:text_map_inject(span:context(), carrier)
 
@@ -37,7 +45,7 @@ function _M.Login()
     return ngx.redirect("/login.html")
   end
 
-  local client = GenericObjectPool:connection(UserServiceClient, "user-service" .. k8s_suffix, 9090)
+  local client = GenericObjectPool:connection(UserServiceClient, "user-service.social-network.svc.cluster.local" .. k8s_suffix, 9090)
 
   local status, ret = pcall(client.Login, client, req_id,
       args.username, args.password, carrier)

@@ -1,5 +1,7 @@
 FROM ubuntu:16.04
 
+RUN sed -i -re 's/(archive\.ubuntu\.com|security\.ubuntu\.com)/old-releases.ubuntu.com/g' /etc/apt/sources.list
+
 ARG LIB_MONGOC_VERSION=1.15.0
 ARG LIB_THRIFT_VERSION=0.12.0
 ARG LIB_JSON_VERSION=3.6.1

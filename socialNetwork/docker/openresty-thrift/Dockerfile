@@ -202,10 +202,18 @@ RUN cd /usr/local/openresty/lualib/thrift/src \
 
 ENV LUA_PATH=$LUA_PATH;/gen-lua/?.lua
 
-RUN luarocks install long \
-    && luarocks install lua-resty-jwt \
+#RUN luarocks install long \
+#    && luarocks install lua-resty-jwt \
+#    && ldconfig
+RUN set -ex \
+    && apt-get update \
+    && apt-get install -y git ca-certificates \
+    && git clone https://github.com/SkyLothar/lua-resty-jwt.git /tmp/lua-resty-jwt \
+    # lua-resty-jwt의 코드가 들어있는 경로에서 resty 디렉토리만 복사
+    && mkdir -p /usr/local/openresty/lualib \
+    && cp -r /tmp/lua-resty-jwt/lib/resty /usr/local/openresty/lualib/ \
+    && rm -rf /tmp/lua-resty-jwt \
     && ldconfig
-
 
 # Copy nginx configuration files
 COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
