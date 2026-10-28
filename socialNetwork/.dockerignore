@@ -2,6 +2,8 @@
 !/src/
 !/CMakeLists.txt
 !/cmake/
+!/config/
+!/config/service-config.json
 !/datasets/
 !/gen-cpp/
 !/scripts/
