@@ -30,8 +30,8 @@ import sys
 source = Path(sys.argv[1]).read_text(encoding='utf-8')
 needle = 'http://localhost:8080/wrk2-api/'
 count = source.count(needle)
-if count != 3:
-    raise SystemExit(f'[ERR] Expected 3 absolute API paths; found {count}. Inspect mixed-workload.lua.')
+if count not in (0, 3):
+    raise SystemExit(f'[ERR] Unexpected absolute API path count: {count}')
 source = source.replace(needle, '/wrk2-api/')
 if 'request = function()' not in source:
     raise SystemExit('[ERR] Missing request() function in Lua.')
