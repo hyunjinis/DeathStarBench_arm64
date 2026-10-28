@@ -1,35 +1,61 @@
-FROM hyunjinis/thrift-microservice-deps:arm64 AS builder
-
-ARG LIB_REDIS_PLUS_PLUS_VERSION=1.2.3
-
-# Apply patch and re-install Redis plus plus
-RUN cd /tmp/redis-plus-plus\
-&& cmake -DREDIS_PLUS_PLUS_USE_TLS=ON . \
-&& make -j$(nproc) \
-&& make install
-
-COPY ./ /social-network-microservices
-RUN cd /social-network-microservices \
-    && mkdir -p build \
-    && cd build \
-    && cmake -DCMAKE_BUILD_TYPE=Debug .. \
-    && make -j$(nproc) \
-    && make install
-
-FROM ubuntu:16.04
-
-# Copy compiled C++ binaries and dependencies
-COPY --from=builder /usr/local/bin/* /usr/local/bin/
-COPY --from=builder /usr/local/lib/* /usr/local/lib/
-
-# Install system dependencies
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-        openssl \
-        ca-certificates \
-        libsasl2-2 \
-        libmemcached11 \
-        libmemcachedutil2 \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+# ============================================================
+# Stage 1: Build all Social Network C++ RPC services
+# ============================================================
+FROM anuphal/thrift-microservice-deps:latest AS builder
 
 WORKDIR /social-network-microservices
+
+COPY . .
+
+RUN mkdir -p build && \
+    cd build && \
+    cmake -DCMAKE_BUILD_TYPE=Release .. && \
+    make -j2 \
+      ComposePostService \
+      UniqueIdService \
+      UserService \
+      TextService \
+      MediaService \
+      UrlShortenService \
+      UserMentionService \
+      PostStorageService \
+      UserTimelineService \
+      HomeTimelineService \
+      SocialGraphService
+
+# Verify and collect all 11 binaries.
+RUN set -eu; \
+    mkdir -p /tmp/social-network-bin; \
+    for svc in \
+      ComposePostService \
+      UniqueIdService \
+      UserService \
+      TextService \
+      MediaService \
+      UrlShortenService \
+      UserMentionService \
+      PostStorageService \
+      UserTimelineService \
+      HomeTimelineService \
+      SocialGraphService; \
+    do \
+      test -x "build/src/${svc}/${svc}"; \
+      cp "build/src/${svc}/${svc}" /tmp/social-network-bin/; \
+    done
+
+# ============================================================
+# Stage 2: ARM64 runtime
+# ============================================================
+FROM hyunjinis/social-network-microservices:arm64-sslfix
+
+WORKDIR /social-network-microservices
+
+# Replace older service binaries with the newly compiled ones.
+COPY --from=builder /tmp/social-network-bin/ /usr/local/bin/
+
+# Use configuration from the same source version.
+COPY config/service-config.json \
+     /social-network-microservices/config/service-config.json
+
+COPY config/jaeger-config.yml \
+     /social-network-microservices/config/jaeger-config.yml
