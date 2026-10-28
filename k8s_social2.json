@@ -238,7 +238,7 @@
             "containers": [
               {
                 "name": "compose-post-service",
-                "image": "local/social-network-microservices:arm64-final-v1",
+                "image": "hyunjinis/social-network-microservices:arm64-final-v1",
                 "command": [
                   "ComposePostService"
                 ],
@@ -357,7 +357,7 @@
             "containers": [
               {
                 "name": "home-timeline-service",
-                "image": "local/social-network-microservices:arm64-final-v1",
+                "image": "hyunjinis/social-network-microservices:arm64-final-v1",
                 "command": [
                   "HomeTimelineService"
                 ],
@@ -476,7 +476,7 @@
             "containers": [
               {
                 "name": "media-service",
-                "image": "local/social-network-microservices:arm64-final-v1",
+                "image": "hyunjinis/social-network-microservices:arm64-final-v1",
                 "command": [
                   "MediaService"
                 ],
@@ -535,7 +535,7 @@
             "containers": [
               {
                 "name": "post-storage-service",
-                "image": "local/social-network-microservices:arm64-final-v1",
+                "image": "hyunjinis/social-network-microservices:arm64-final-v1",
                 "command": [
                   "PostStorageService"
                 ],
@@ -718,7 +718,7 @@
             "containers": [
               {
                 "name": "social-graph-service",
-                "image": "local/social-network-microservices:arm64-final-v1",
+                "image": "hyunjinis/social-network-microservices:arm64-final-v1",
                 "command": [
                   "SocialGraphService"
                 ],
@@ -896,7 +896,7 @@
             "containers": [
               {
                 "name": "text-service",
-                "image": "local/social-network-microservices:arm64-final-v1",
+                "image": "hyunjinis/social-network-microservices:arm64-final-v1",
                 "command": [
                   "TextService"
                 ],
@@ -955,7 +955,7 @@
             "containers": [
               {
                 "name": "unique-id-service",
-                "image": "local/social-network-microservices:arm64-final-v1",
+                "image": "hyunjinis/social-network-microservices:arm64-final-v1",
                 "command": [
                   "UniqueIdService"
                 ],
@@ -1014,7 +1014,7 @@
             "containers": [
               {
                 "name": "url-shorten-service",
-                "image": "local/social-network-microservices:arm64-final-v1",
+                "image": "hyunjinis/social-network-microservices:arm64-final-v1",
                 "command": [
                   "UrlShortenService"
                 ],
@@ -1073,7 +1073,7 @@
             "containers": [
               {
                 "name": "user-mention-service",
-                "image": "local/social-network-microservices:arm64-final-v1",
+                "image": "hyunjinis/social-network-microservices:arm64-final-v1",
                 "command": [
                   "UserMentionService"
                 ],
@@ -1132,7 +1132,7 @@
             "containers": [
               {
                 "name": "user-service",
-                "image": "local/social-network-microservices:arm64-final-v1",
+                "image": "hyunjinis/social-network-microservices:arm64-final-v1",
                 "command": [
                   "UserService"
                 ],
@@ -1315,7 +1315,7 @@
             "containers": [
               {
                 "name": "user-timeline-service",
-                "image": "local/social-network-microservices:arm64-final-v1",
+                "image": "hyunjinis/social-network-microservices:arm64-final-v1",
                 "command": [
                   "UserTimelineService"
                 ],
