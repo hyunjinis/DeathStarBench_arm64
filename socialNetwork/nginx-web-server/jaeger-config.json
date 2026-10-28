@@ -1,9 +1,9 @@
 {
   "service_name": "nginx-web-server",
-  "diabled": false,
+  "disabled": false,
   "reporter": {
     "logSpans": false,
-    "localAgentHostPort": "jaeger-agent:6831",
+    "localAgentHostPort": "jaeger-agent.social-network.svc.cluster.local:6831",
     "queueSize": 1000000,
     "bufferFlushInterval": 10
   },
