@@ -1831,7 +1831,7 @@
           },
           "spec": {
             "nodeSelector": {
-              "kubernetes.io/hostname": "rpi2-desktop"
+              "group": "exp"
             },
             "containers": [
               {
@@ -1901,7 +1901,7 @@
           },
           "spec": {
             "nodeSelector": {
-              "kubernetes.io/hostname": "rpi2-desktop"
+              "group": "exp"
             },
             "containers": [
               {
