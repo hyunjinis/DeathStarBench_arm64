@@ -242,7 +242,7 @@
                 "command": [
                   "ComposePostService"
                 ],
-                "imagePullPolicy": "Never"
+                "imagePullPolicy": "IfNotPresent"
               }
             ],
             "restartPolicy": "Always",
@@ -361,7 +361,7 @@
                 "command": [
                   "HomeTimelineService"
                 ],
-                "imagePullPolicy": "Never"
+                "imagePullPolicy": "IfNotPresent"
               }
             ],
             "restartPolicy": "Always",
@@ -480,7 +480,7 @@
                 "command": [
                   "MediaService"
                 ],
-                "imagePullPolicy": "Never"
+                "imagePullPolicy": "IfNotPresent"
               }
             ],
             "restartPolicy": "Always",
@@ -539,7 +539,7 @@
                 "command": [
                   "PostStorageService"
                 ],
-                "imagePullPolicy": "Never"
+                "imagePullPolicy": "IfNotPresent"
               }
             ],
             "restartPolicy": "Always",
@@ -722,7 +722,7 @@
                 "command": [
                   "SocialGraphService"
                 ],
-                "imagePullPolicy": "Never"
+                "imagePullPolicy": "IfNotPresent"
               }
             ],
             "restartPolicy": "Always",
@@ -900,7 +900,7 @@
                 "command": [
                   "TextService"
                 ],
-                "imagePullPolicy": "Never"
+                "imagePullPolicy": "IfNotPresent"
               }
             ],
             "restartPolicy": "Always",
@@ -959,7 +959,7 @@
                 "command": [
                   "UniqueIdService"
                 ],
-                "imagePullPolicy": "Never"
+                "imagePullPolicy": "IfNotPresent"
               }
             ],
             "restartPolicy": "Always",
@@ -1018,7 +1018,7 @@
                 "command": [
                   "UrlShortenService"
                 ],
-                "imagePullPolicy": "Never"
+                "imagePullPolicy": "IfNotPresent"
               }
             ],
             "restartPolicy": "Always",
@@ -1077,7 +1077,7 @@
                 "command": [
                   "UserMentionService"
                 ],
-                "imagePullPolicy": "Never"
+                "imagePullPolicy": "IfNotPresent"
               }
             ],
             "restartPolicy": "Always",
@@ -1136,7 +1136,7 @@
                 "command": [
                   "UserService"
                 ],
-                "imagePullPolicy": "Never"
+                "imagePullPolicy": "IfNotPresent"
               }
             ],
             "restartPolicy": "Always",
