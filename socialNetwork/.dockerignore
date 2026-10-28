@@ -4,6 +4,7 @@
 !/cmake/
 !/config/
 !/config/service-config.json
+!/config/jaeger-config.yml
 !/datasets/
 !/gen-cpp/
 !/scripts/
